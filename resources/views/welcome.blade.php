@@ -1,15 +1,17 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+@extends('layouts.app')
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+@section('content')
+    <div class="container py-5">
+        <div class="row">
+            <div class="col-lg-6 mx-auto">
+                <p>
+                    <a href="#" class="btn btn-primary">Ajouter un projet</a>
+                </p>
 
-    <title>DIGIMAN</title>
-
-</head>
-
-<body class="antialiased">
-    Welcome to <strong>DIGIMAN</strong>
-
-</html>
+            </div>
+            <!-- /.col-lg-6 mx-auto -->
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container -->
+@endsection

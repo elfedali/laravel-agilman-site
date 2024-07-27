@@ -22,5 +22,10 @@ class DatabaseSeeder extends Seeder
             'name' => 'Mouad BNT',
             'email' => 'admin@agilman.ma',
         ]);
+
+
+        \App\Models\Project::factory(10)->create();
+        \App\Models\Sprint::factory(10)->create();
+        \App\Models\Task::factory(10)->create();
     }
 }

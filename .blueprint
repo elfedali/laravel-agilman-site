@@ -1,2 +1,41 @@
+created:
+    - app/Http/Controllers/ProjectController.php
+    - app/Http/Controllers/SprintController.php
+    - app/Http/Controllers/TaskController.php
+    - database/factories/ProjectFactory.php
+    - database/factories/SprintFactory.php
+    - database/factories/TaskFactory.php
+    - database/migrations/2024_07_27_134607_create_projects_table.php
+    - database/migrations/2024_07_27_134608_create_sprints_table.php
+    - database/migrations/2024_07_27_134609_create_tasks_table.php
+    - app/Models/Project.php
+    - app/Models/Sprint.php
+    - app/Models/Task.php
+    - tests/Feature/Http/Controllers/ProjectControllerTest.php
+    - tests/Feature/Http/Controllers/SprintControllerTest.php
+    - tests/Feature/Http/Controllers/TaskControllerTest.php
+    - app/Http/Requests/ProjectStoreRequest.php
+    - app/Http/Requests/ProjectUpdateRequest.php
+    - app/Http/Requests/SprintStoreRequest.php
+    - app/Http/Requests/SprintUpdateRequest.php
+    - app/Http/Requests/TaskStoreRequest.php
+    - app/Http/Requests/TaskUpdateRequest.php
+    - resources/views/project/index.blade.php
+    - resources/views/project/create.blade.php
+    - resources/views/project/show.blade.php
+    - resources/views/project/edit.blade.php
+    - resources/views/sprint/index.blade.php
+    - resources/views/sprint/create.blade.php
+    - resources/views/sprint/show.blade.php
+    - resources/views/sprint/edit.blade.php
+    - resources/views/task/index.blade.php
+    - resources/views/task/create.blade.php
+    - resources/views/task/show.blade.php
+    - resources/views/task/edit.blade.php
+updated:
+    - routes/web.php
 models:
     User: { name: string, email: string, email_verified_at: 'datetime nullable', password: string, remember_token: 'string nullable' }
+    Project: { owner_id: 'id foreign:users', title: string, description: text, status: 'string:10', relationships: { hasMany: Sprint } }
+    Sprint: { project_id: 'id foreign:projects', title: string, description: text, status: 'string:10', start_date: date, end_date: date, expected_end_date: date, relationships: { hasMany: Task } }
+    Task: { sprint_id: 'id foreign:sprints', title: string, description: text, status: 'string:10', start_date: date, end_date: date, expected_end_date: date }

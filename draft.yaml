@@ -1,5 +1,35 @@
 models:
-  Poject:
+  Project:
+    owner_id: id foreign:users
+    title: string
+    description: text
+    status: string:10
+    relationships:
+      hasMany: Sprint
+  Sprint:
+    project_id: id foreign:projects
+    title: string
+    description: text
+    status: string:10
+    start_date: date
+    end_date: date
+    expected_end_date: date
+    relationships:
+      hasMany: Task
+
+  Task:
+    sprint_id: id foreign:sprints
+    title: string
+    description: text
+    status: string:10
+    start_date: date
+    end_date: date
+    expected_end_date: date
 
 controllers:
-  # ...
+  Project:
+    resource
+  Sprint:
+    resource
+  Task:
+    resource
