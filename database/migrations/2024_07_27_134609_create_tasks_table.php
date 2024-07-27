@@ -18,7 +18,7 @@ return new class extends Migration
             $table->foreignId('sprint_id')->constrained();
             $table->string('title');
             $table->text('description');
-            $table->string('status', 10);
+            $table->string('status')->default('active');
             $table->date('start_date');
             $table->date('end_date');
             $table->date('expected_end_date');

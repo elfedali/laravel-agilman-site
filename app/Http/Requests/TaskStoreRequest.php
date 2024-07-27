@@ -23,7 +23,7 @@ class TaskStoreRequest extends FormRequest
             'sprint_id' => ['required', 'integer', 'exists:sprints,id'],
             'title' => ['required', 'string'],
             'description' => ['required', 'string'],
-            'status' => ['required', 'string', 'max:10'],
+            // 'status' => ['required', 'string', 'max:10'],
             'start_date' => ['required', 'date'],
             'end_date' => ['required', 'date'],
             'expected_end_date' => ['required', 'date'],

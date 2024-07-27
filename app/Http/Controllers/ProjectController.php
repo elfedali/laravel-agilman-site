@@ -47,6 +47,11 @@ class ProjectController extends Controller
 
     public function show(Request $request, Project $project): View
     {
+        // project with sprints
+        $project->load(['sprints' => function ($query) {
+            $query->orderBy('created_at', 'desc');
+        }]);
+
         return view('project.show', compact('project'));
     }
 

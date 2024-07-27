@@ -27,9 +27,9 @@ class TaskController extends Controller
     {
         $task = Task::create($request->validated());
 
-        $request->session()->flash('task.id', $task->id);
+        // $request->session()->flash('task.id', $task->id);
 
-        return redirect()->route('tasks.index');
+        return redirect()->route('sprints.show', $task->sprint_id);
     }
 
     public function show(Request $request, Task $task): View

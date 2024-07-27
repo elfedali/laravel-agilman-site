@@ -13,7 +13,9 @@ class SprintController extends Controller
 {
     public function index(Request $request): View
     {
-        $sprints = Sprint::all();
+        // with tasks
+        $sprints = Sprint::with('tasks')->get();
+
 
         return view('sprint.index', compact('sprints'));
     }
@@ -27,9 +29,9 @@ class SprintController extends Controller
     {
         $sprint = Sprint::create($request->validated());
 
-        $request->session()->flash('sprint.id', $sprint->id);
+        //$request->session()->flash('sprint.id', $sprint->id);
 
-        return redirect()->route('sprints.index');
+        return redirect()->route('projects.show', $sprint->project_id);
     }
 
     public function show(Request $request, Sprint $sprint): View
