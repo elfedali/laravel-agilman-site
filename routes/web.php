@@ -19,4 +19,6 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/projects', [App\Http\Controllers\PageController::class, 'index'])->name('page_projects');
+Route::get('/projects/{project}', [App\Http\Controllers\PageController::class, 'show'])->name('page_project_details');
+Route::get('/tasks/{task}', [App\Http\Controllers\PageController::class, 'task'])->name('page_project_task_details');
