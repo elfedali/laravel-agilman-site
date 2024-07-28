@@ -17,7 +17,7 @@
                 <hr>
 
 
-                <div class="bg-light p-4">
+                <div class="">
                     <h2>
                         Ajouter une sprint
                     </h2>

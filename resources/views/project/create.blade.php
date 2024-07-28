@@ -12,12 +12,16 @@
 
                 {{ html()->form('POST', route('projects.store'))->open() }}
                 <div>
-                    le titre
-                    {{ html()->text('title')->placeholder('Title') }}
+                    <label for="title">
+                        {{ __('label.title') }}
+                    </label>
+                    {{ html()->text('title') }}
                 </div>
                 <div>
-                    la description
-                    {{ html()->textarea('description')->placeholder('Description') }}
+                    <label for="description">
+                        {{ __('label.description') }}
+                    </label>
+                    {{ html()->textarea('description') }}
                 </div>
                 {{ html()->submit('Create project') }}
                 {{ html()->form()->close() }}

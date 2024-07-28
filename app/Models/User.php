@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
+//use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -11,6 +11,13 @@ use Laravel\Sanctum\HasApiTokens;
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
+
+    public const USER_GENDER_MALE = "male";
+    public const USER_GENDER_FEMALE = "female";
+
+    public const USER_ROLE_USER = "user";
+    public const USER_ROLE_ADMIN = "admin";
+
 
     /**
      * The attributes that are mass assignable.
@@ -21,6 +28,9 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'first_name',
+        'last_name',
+        'phone',
     ];
 
     /**
@@ -42,4 +52,22 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    // has many projects
+    public function projects()
+    {
+        return $this->hasMany(Project::class, 'owner_id');
+    }
+
+    // has many sprints
+    public function sprints()
+    {
+        return $this->hasMany(Sprint::class);
+    }
+
+    // has many tasks
+    public function tasks()
+    {
+        return $this->hasMany(Task::class);
+    }
 }

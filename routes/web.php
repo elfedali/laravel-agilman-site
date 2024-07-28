@@ -29,4 +29,10 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('sprints', App\Http\Controllers\SprintController::class);
 
     Route::resource('tasks', App\Http\Controllers\TaskController::class);
+
+    Route::get('profile', [App\Http\Controllers\ProfileController::class, 'index'])->name('profile');
+    Route::post('profile', [App\Http\Controllers\ProfileController::class, 'update'])->name('profile.update');
+
+    Route::get('settings', [App\Http\Controllers\SettingsController::class, 'index'])->name('settings');
+    Route::post('settings', [App\Http\Controllers\SettingsController::class, 'update'])->name('settings.update');
 });

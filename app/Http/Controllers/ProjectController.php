@@ -13,7 +13,9 @@ class ProjectController extends Controller
 {
     public function index(Request $request): View
     {
-        $projects = Project::all();
+        // $projects = Project::all()->sortByDesc('created_at')
+        // get the project created by the authenticated user
+        $projects = auth()->user()->projects->sortByDesc('created_at');
 
         return view('project.index', compact('projects'));
     }

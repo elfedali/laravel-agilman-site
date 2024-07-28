@@ -5,14 +5,32 @@ $font-family-sans-serif: "DM Sans", sans-serif;
 $font-size-base: 1rem;
 $line-height-base: 1.6;
 
-$primary: lightblue;
+//$primary: #6faaea;
+$green: #44c6a4;
+$red: #ee667e;
+$yellow: #ecb342;
+$dark: #3f454f;
 
 $input-padding-y: 0.6rem;
 
 $input-focus-box-shadow: none;
+$headings-font-family: "DM Sans", sans-serif;
+$headings-font-weight: 400;
 
+$h1-font-size: 2rem;
+$h2-font-size: 1.75rem;
+$h3-font-size: 1.5rem;
+$h4-font-size: 1.25rem;
+$h5-font-size: 1rem;
+$h6-font-size: 0.875rem;
+
+$nav-link-padding-y: 0.8rem;
 // Bootstrap
 @import "bootstrap/scss/bootstrap";
+
+// Custom
+@import "form";
+@import "modal";
 
 .overlay {
     position: absolute;
@@ -22,4 +40,90 @@ $input-focus-box-shadow: none;
     height: 100%;
     background: rgba($dark, 0.2);
     z-index: 1000;
+}
+
+//
+//
+// layouts.scss
+//
+//
+
+.main-container {
+    > .container:last-child,
+    > .container-fluid:last-child {
+        padding-bottom: $spacer * 4;
+    }
+}
+
+@include media-breakpoint-up(lg) {
+    .layout-nav-side {
+        display: flex;
+        > .navbar {
+            padding: $spacer;
+            width: 264px;
+            height: 100vh;
+            overflow-y: scroll;
+            -ms-overflow-style: none;
+            &::-webkit-scrollbar {
+                display: none;
+            }
+            flex-direction: column;
+            align-items: flex-start;
+            .navbar-brand {
+                margin-bottom: $spacer * 2;
+            }
+            .navbar-collapse {
+                align-items: flex-start;
+                width: 100%;
+                flex-shrink: 0;
+                padding-bottom: $spacer;
+            }
+            .navbar-nav {
+                flex-direction: column;
+                width: 100%;
+            }
+            .nav-link {
+                padding-left: 0;
+            }
+        }
+        .main-container {
+            overflow: hidden;
+            flex: 1;
+            max-width: calc(100vw - 264px);
+            > .container {
+                padding-left: $spacer * 2;
+                padding-right: $spacer * 2;
+            }
+        }
+        .content-container {
+            display: flex;
+            height: calc(100vh - 3.5625rem);
+        }
+    }
+    .layout-sidebar {
+        .main-container {
+            display: flex;
+            flex-direction: row-reverse;
+            height: calc(100vh - 59px);
+            overflow: hidden;
+            .content-container {
+                height: 100%;
+                overflow-y: scroll;
+                -ms-overflow-style: none;
+                &::-webkit-scrollbar {
+                    display: none;
+                }
+                flex: 1;
+                > .container:last-child {
+                    padding-bottom: $spacer * 3;
+                }
+            }
+        }
+    }
+}
+
+.main-container {
+    > .container {
+        padding-bottom: $spacer * 3;
+    }
 }
