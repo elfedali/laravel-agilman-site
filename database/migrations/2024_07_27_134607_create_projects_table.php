@@ -17,8 +17,19 @@ return new class extends Migration
             $table->id();
             $table->foreignId('owner_id')->constrained('users');
             $table->string('title');
+            $table->string('slug')->unique();
+
             $table->text('description')->nullable();
             $table->string('status', 10)->nullable();
+            $table->string('visibility', 10)->nullable();
+            $table->string('thumbnail')->nullable();
+            // dates
+            $table->date('start_date')->nullable();
+            $table->date('end_date')->nullable();
+
+
+
+
             $table->timestamps();
         });
 

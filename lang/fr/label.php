@@ -105,5 +105,27 @@ return [
     'info' => 'Info',
     'warning' => 'Attention',
 
+    'duration' => 'Durée',
+    'type' => 'Type',
+
+    'parent' => 'Parent',
+
+    'project-details' => 'Détails du projet',
+    'or' => 'Ou',
+    'expected-end-date' => 'Date de fin prévue',
+    'see-details' => 'Voir les détails',
+
+    'low-priority' => 'Faible priorité',
+    'medium-priority' => 'Priorité moyenne',
+    'high-priority' => 'Haute priorité',
+
+    'feature' => 'Fonctionnalité',
+    'bug' => 'Bogue',
+    'task' => 'Tâche',
+
+    'active' => 'Actif',
+    'inactive' => 'Inactif',
+
+
 
 ];

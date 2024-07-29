@@ -29,9 +29,10 @@ class SprintController extends Controller
     {
         $sprint = Sprint::create($request->validated());
 
-        //$request->session()->flash('sprint.id', $sprint->id);
 
-        return redirect()->route('projects.show', $sprint->project_id);
+
+        return redirect()->route('projects.show', $sprint->project->slug)
+            ->with('success', 'Le sprint a été créé avec succès.');
     }
 
     public function show(Request $request, Sprint $sprint): View

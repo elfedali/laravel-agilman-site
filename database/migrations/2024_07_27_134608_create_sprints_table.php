@@ -20,8 +20,16 @@ return new class extends Migration
             $table->text('description');
             $table->string('status')->default('active');
             $table->date('start_date');
-            $table->date('end_date');
-            $table->date('expected_end_date');
+
+            $table->date('end_date')->nullable(); // actual end date
+            $table->date('expected_end_date')->nullable(); // expected end date based on the sprint duration
+            $table->integer('duration')->nullable(); // duration in days 
+
+            // priority
+            $table->string('priority', 10)->default('low');
+            // type
+            $table->string('type', 10)->default('feature'); // feature, bug, task
+
             $table->timestamps();
         });
 

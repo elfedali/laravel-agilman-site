@@ -7,22 +7,18 @@
                     clip-rule="evenodd" />
             </svg>
             <b class="ms-2">agilman</b> </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMainMenu"
+            aria-controls="navbarMainMenu" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <div class="collapse navbar-collapse" id="navbarMainMenu">
+            <ul class="navbar-nav me-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('home') }}">
+                    <a class="nav-link @if (Route::currentRouteName() == 'home') active @endif" href="{{ route('home') }}">
                         {{ __('label.home') }}
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">
-                        {{ __('label.all-tasks') }}
-                    </a>
-                </li>
+
                 <li class="nav-item">
                     <a class="nav-link" href="#">
                         {{ __('label.my-tasks') }}
@@ -43,17 +39,25 @@
                             </a>
                         </li>
                         <li>
-                        <li class="dropdown-item" href="{{ route('settings') }}">
-                            {{ __('label.settings') }}
+                        <li>
+                            <a class="dropdown-item" href="{{ route('settings') }}">
+                                {{ __('label.settings') }}
                             </a>
                         </li>
                         <li>
                             <hr class="dropdown-divider">
                         </li>
-                        <li><a class="dropdown-item" href="{{ route('logout') }}"
+                        <li><a class="dropdown-item text-danger" href="{{ route('logout') }}"
                                 onclick="event.preventDefault();
                                 document.getElementById('logout-form').submit();">
-                                {{ __('label.logout') }}
+                                <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"
+                                    viewBox="0 0 1200 1200">
+                                    <path fill="currentColor"
+                                        d="M513.94 0v693.97h172.12V0zM175.708 175.708C67.129 284.287 0 434.314 0 600c0 331.371 268.629 600 600 600s600-268.629 600-600c0-165.686-67.13-315.713-175.708-424.292l-120.85 120.85c77.66 77.658 125.684 184.952 125.684 303.442c0 236.981-192.146 429.126-429.126 429.126c-236.981 0-429.126-192.145-429.126-429.126c0-118.49 48.025-225.784 125.684-303.442z" />
+                                </svg>
+                                <span class="ms-2">
+                                    {{ __('label.logout') }}
+                                </span>
                             </a>
                         </li>
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
