@@ -20,13 +20,15 @@ class SprintUpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'project_id' => ['required', 'integer', 'exists:projects,id'],
+            // 'project_id' => ['required', 'integer', 'exists:projects,id'],
             'title' => ['required', 'string'],
             'description' => ['required', 'string'],
-            'status' => ['required', 'string', 'max:10'],
+            'status' => ['required', 'string', 'max:10', 'in:todo,doing,done'],
             'start_date' => ['required', 'date'],
-            'end_date' => ['required', 'date'],
-            'expected_end_date' => ['required', 'date'],
+            'duration' => ['required', 'integer'],
+            'priority' => ['required', 'string', 'max:10', 'in:low,medium,high'],
+            'type' => ['required', 'string', 'max:10', 'in:feature,bug,task'],
+
         ];
     }
 }

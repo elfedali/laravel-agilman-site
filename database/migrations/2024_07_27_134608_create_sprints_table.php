@@ -30,6 +30,8 @@ return new class extends Migration
             // type
             $table->string('type', 10)->default('feature'); // feature, bug, task
 
+            $table->string('assignee')->nullable(); // assigned to user
+
             $table->timestamps();
         });
 

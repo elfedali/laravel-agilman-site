@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 
 class Sprint extends Model
 {
@@ -79,5 +80,11 @@ class Sprint extends Model
                 $sprint->expected_end_date = (new Carbon($sprint->start_date))->addDays($sprint->duration);
             }
         });
+    }
+
+    // comment morphMany relation
+    public function comments(): MorphMany
+    {
+        return $this->morphMany(Comment::class, 'commentable');
     }
 }

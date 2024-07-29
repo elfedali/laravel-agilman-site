@@ -66,47 +66,64 @@
                                                     <label for="title">Title</label>
                                                 </div>
                                                 <div class="form-floating mb-3">
-                                                    {{ html()->textarea('description')->class('form-control')->placeholder(__('label.description')) }}
+                                                    {{ html()->textarea('description')->class('form-control')->placeholder(__('label.description'))->rows(3)->style('height: 160px') }}
                                                     <label for="description">Description</label>
                                                 </div>
 
 
-                                                {{-- start_date --}}
-                                                <div class="form-floating mb-3">
-                                                    {{ html()->date('start_date')->class('form-control')->placeholder(__('label.date-star')) }}
-                                                    <label for="start-date">
-                                                        {{ __('label.start-date') }}
-                                                    </label>
+                                                <div class="row">
+                                                    <div class="col-lg">
+                                                        {{-- start_date --}}
+                                                        <div class="form-floating mb-3">
+                                                            {{ html()->date('start_date')->class('form-control')->placeholder(__('label.date-star')) }}
+                                                            <label for="start-date">
+                                                                {{ __('label.start-date') }}
+                                                            </label>
+                                                        </div>
+
+                                                    </div>
+                                                    <div class="col-lg">
+
+                                                        {{-- durration --}}
+                                                        <div class="form-floating mb-3">
+                                                            {{ html()->number('duration')->class('form-control')->placeholder(__('label.duration')) }}
+                                                            <label for="duration">
+                                                                {{ __('label.duration') }}
+                                                            </label>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-lg">
+                                                        <div class="form-floating mb-3">
+                                                            {{ html()->select('status', ['todo' => 'A faire', 'doing' => 'En cours', 'done' => 'Terminé'])->class('form-control') }}
+                                                            <label for="status">
+                                                                {{ __('label.status') }}
+                                                            </label>
+                                                        </div>
+
+
+                                                    </div>
+                                                    <div class="col-lg">
+                                                        <div class="form-floating mb-3">
+                                                            {{ html()->select('priority', ['low' => 'Basse', 'medium' => 'Moyenne', 'high' => 'Haute'])->class('form-control') }}
+                                                            <label for="priority">
+                                                                {{ __('label.priority') }}
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg">
+                                                        <div class="form-floating mb-3">
+                                                            {{ html()->select('type', ['feature' => 'Fonctionnalité', 'bug' => 'Bug', 'task' => 'Tâche'])->class('form-control') }}
+                                                            <label for="type">
+                                                                {{ __('label.type') }}
+                                                            </label>
+                                                        </div>
+                                                    </div>
                                                 </div>
 
-                                                {{-- durration --}}
-                                                <div class="form-floating mb-3">
-                                                    {{ html()->number('duration')->class('form-control')->placeholder(__('label.duration')) }}
-                                                    <label for="duration">
-                                                        {{ __('label.duration') }}
-                                                    </label>
 
-                                                </div>
-                                                <div class="form-floating mb-3">
-                                                    {{ html()->select('status', ['todo' => 'A faire', 'doing' => 'En cours', 'done' => 'Terminé'])->class('form-control') }}
-                                                    <label for="status">
-                                                        {{ __('label.status') }}
-                                                    </label>
-                                                </div>
-
-                                                <div class="form-floating mb-3">
-                                                    {{ html()->select('priority', ['low' => 'Basse', 'medium' => 'Moyenne', 'high' => 'Haute'])->class('form-control') }}
-                                                    <label for="priority">
-                                                        {{ __('label.priority') }}
-                                                    </label>
-                                                </div>
-
-                                                <div class="form-floating mb-3">
-                                                    {{ html()->select('type', ['feature' => 'Fonctionnalité', 'bug' => 'Bug', 'task' => 'Tâche'])->class('form-control') }}
-                                                    <label for="type">
-                                                        {{ __('label.type') }}
-                                                    </label>
-                                                </div>
                                                 <?php $users = App\Models\User::all()->pluck('name', 'id'); ?>
                                                 <div class="form-floating mb-3">
                                                     {{ html()->select('assign_to', $users)->class('form-control') }}
@@ -115,12 +132,12 @@
                                                     </label>
                                                 </div>
 
-                                                <div class="form-floating mb-3">
+                                                {{-- <div class="form-floating mb-3">
                                                     {{ html()->select('parent_id', $project->sprints->pluck('title', 'id'))->class('form-control') }}
                                                     <label for="parent_id">
                                                         {{ __('label.parent') }}
                                                     </label>
-                                                </div>
+                                                </div> --}}
 
 
                                             </div>

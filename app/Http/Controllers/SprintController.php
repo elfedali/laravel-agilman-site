@@ -37,6 +37,8 @@ class SprintController extends Controller
 
     public function show(Request $request, Sprint $sprint): View
     {
+        // load comments and user
+        $sprint->load('comments.user');
         return view('sprint.show', compact('sprint'));
     }
 
@@ -49,9 +51,10 @@ class SprintController extends Controller
     {
         $sprint->update($request->validated());
 
-        $request->session()->flash('sprint.id', $sprint->id);
 
-        return redirect()->route('sprints.index');
+
+        return redirect()->route('sprints.show', $sprint->id)
+            ->with('success', 'Le sprint a été mis à jour avec succès.');
     }
 
     public function destroy(Request $request, Sprint $sprint): RedirectResponse

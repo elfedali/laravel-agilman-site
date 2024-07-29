@@ -28,6 +28,8 @@ Route::middleware(['auth'])->group(function () {
 
     Route::resource('sprints', App\Http\Controllers\SprintController::class);
 
+    Route::resource('sprint/{sprint}/comments', App\Http\Controllers\CommentController::class)->only(['store', 'destroy']);
+
     Route::resource('tasks', App\Http\Controllers\TaskController::class);
 
     Route::get('profile', [App\Http\Controllers\ProfileController::class, 'index'])->name('profile');
