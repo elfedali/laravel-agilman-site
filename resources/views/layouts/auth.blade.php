@@ -20,14 +20,14 @@
 
 
         <div class="row">
-            <div class="col-lg-6">
+            <div class="col-lg-6 d-none d-lg-block">
                 <div class="position-relative vh-100 overflow-hidden">
                     <div class="overlay"></div>
                     <img src="{{ url('/assets/images/login_cover.png') }}" alt="AGILMAN" class="img-fluid">
                 </div>
             </div>
             <!-- /.col-lg-6 -->
-            <div class="col-lg-6 my-auto">
+            <div class="col-lg-6 py-5 ">
 
                 @if (session('error'))
                     <div class="p-4 mb-4 text-sm text-red-800 bg-red-50 dark:bg-gray-800 dark:text-red-400"

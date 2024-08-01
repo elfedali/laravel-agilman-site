@@ -27,6 +27,8 @@
 
             </ul>
             <ul class="navbar-nav">
+
+                {{-- switch theme mode --}}
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                         aria-expanded="false">
@@ -47,6 +49,8 @@
                         <li>
                             <hr class="dropdown-divider">
                         </li>
+
+
                         <li><a class="dropdown-item text-danger" href="{{ route('logout') }}"
                                 onclick="event.preventDefault();
                                 document.getElementById('logout-form').submit();">
