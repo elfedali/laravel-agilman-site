@@ -21,8 +21,8 @@ class SprintPolicy
      */
     public function view(User $user, Sprint $sprint): bool
     {
-        if ($user->id === $sprint->project->user_id) {
-            return Response::allow();
+        if ($user->id === $sprint->project->owner_id) {
+            return true;
         }
         return false;
     }
@@ -40,8 +40,8 @@ class SprintPolicy
      */
     public function update(User $user, Sprint $sprint): bool
     {
-        if ($user->id === $sprint->project->user_id) {
-            return Response::allow();
+        if ($user->id === $sprint->project->owner_id) {
+            return true;
         }
         return false;
     }
@@ -51,8 +51,8 @@ class SprintPolicy
      */
     public function delete(User $user, Sprint $sprint): bool
     {
-        if ($user->id === $sprint->project->user_id) {
-            return Response::allow();
+        if ($user->id === $sprint->project->owner_id) {
+            return true;
         } else return false;
     }
 
@@ -62,7 +62,7 @@ class SprintPolicy
     public function restore(User $user, Sprint $sprint): bool
     {
         if ($user->id === $sprint->project->owner_id) {
-            return Response::allow();
+            return true;
         } else return false;
     }
 
@@ -72,7 +72,7 @@ class SprintPolicy
     public function forceDelete(User $user, Sprint $sprint): bool
     {
         if ($user->id === $sprint->project->owner_id) {
-            return Response::allow();
+            return true;
         } else return false;
     }
 }

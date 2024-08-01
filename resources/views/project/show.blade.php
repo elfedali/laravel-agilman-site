@@ -32,17 +32,28 @@
                         </div>
                         <section class="mt-4">
                             <!-- Button trigger modal -->
-                            <button type="button" class="btn btn-success" data-bs-toggle="modal"
-                                data-bs-target="#spintModal">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="1.4em" height="1.4em" viewBox="0 0 20 20">
-                                    <path fill="currentColor"
-                                        d="M10 6.5a3 3 0 1 0 0 6h6.44l-.72-.72a.75.75 0 1 1 1.06-1.06l2 2a.75.75 0 0 1 0 1.06l-2 2a.75.75 0 1 1-1.06-1.06l.72-.72H10a4.5 4.5 0 1 1 4.032-2.5h-1.796A3 3 0 0 0 10 6.5m-7.25 6h2.64A5.5 5.5 0 0 0 6.836 14H2.75a.75.75 0 0 1 0-1.5" />
-                                </svg>
-                                <span class="">
-                                    Ajouter une sprint
-                                </span>
-                            </button>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <button type="button" class="btn btn-success me-3" data-bs-toggle="modal"
+                                    data-bs-target="#spintModal">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="1.4em" height="1.4em"
+                                        viewBox="0 0 20 20">
+                                        <path fill="currentColor"
+                                            d="M10 6.5a3 3 0 1 0 0 6h6.44l-.72-.72a.75.75 0 1 1 1.06-1.06l2 2a.75.75 0 0 1 0 1.06l-2 2a.75.75 0 1 1-1.06-1.06l.72-.72H10a4.5 4.5 0 1 1 4.032-2.5h-1.796A3 3 0 0 0 10 6.5m-7.25 6h2.64A5.5 5.5 0 0 0 6.836 14H2.75a.75.75 0 0 1 0-1.5" />
+                                    </svg>
+                                    <span class="">
+                                        Ajouter une sprint
+                                    </span>
+                                </button>
 
+
+
+                                @can('update', $project)
+                                    {{ html()->form('DELETE', route('projects.destroy', $project))->open() }}
+                                    {{ html()->submit('Supprimer le projet')->class('btn btn-link text-danger')->attribute('onclick', 'return confirm("Voulez-vous vraiment supprimer ce projet ?")') }}
+                                    {{ html()->form()->close() }}
+                                @endcan
+                            </div>
+                            <!-- /.d-flex -->
                             <!-- Modal -->
                             <div class="modal fade" id="spintModal" tabindex="-1" aria-labelledby="spintModalLabel"
                                 aria-hidden="true">

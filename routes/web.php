@@ -28,7 +28,8 @@ Route::middleware(['auth'])->group(function () {
         ->except(['create', 'edit']);
 
 
-    Route::resource('sprints', App\Http\Controllers\SprintController::class);
+    Route::resource('sprints', App\Http\Controllers\SprintController::class)
+        ->except(['create', 'edit']);
 
     Route::resource('sprint/{sprint}/comments', App\Http\Controllers\CommentController::class)->only(['store', 'destroy']);
 

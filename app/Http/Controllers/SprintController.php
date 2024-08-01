@@ -14,7 +14,7 @@ class SprintController extends Controller
     public function index(Request $request): View
     {
 
-
+        $this->authorize('viewAny', Sprint::class);
         $sprints = Sprint::with('tasks')->get();
 
 
@@ -23,11 +23,13 @@ class SprintController extends Controller
 
     public function create(Request $request): View
     {
+
         return view('sprint.create');
     }
 
     public function store(SprintStoreRequest $request): RedirectResponse
     {
+        $this->authorize('create', Sprint::class);
         $sprint = Sprint::create($request->validated());
 
 
@@ -40,6 +42,7 @@ class SprintController extends Controller
     {
 
         $this->authorize('view', $sprint);
+
         $sprint->load('comments.user');
         return view('sprint.show', compact('sprint'));
     }
@@ -51,6 +54,7 @@ class SprintController extends Controller
 
     public function update(SprintUpdateRequest $request, Sprint $sprint): RedirectResponse
     {
+        $this->authorize('update', $sprint);
         $sprint->update($request->validated());
 
 
@@ -61,6 +65,8 @@ class SprintController extends Controller
 
     public function destroy(Request $request, Sprint $sprint): RedirectResponse
     {
+        $this->authorize('delete', $sprint);
+        $sprint->tasks()->delete();
         $sprint->delete();
 
         return redirect()->route('sprints.index');

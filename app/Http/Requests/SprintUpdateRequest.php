@@ -12,7 +12,7 @@ class SprintUpdateRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return $this->user()->can('update', Sprint::class);
+        return true;
     }
 
     /**

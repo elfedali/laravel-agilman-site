@@ -45,6 +45,7 @@ class ProjectPolicy
         if ($user->id === $project->owner_id) {
             return true;
         }
+        return false;
     }
 
     /**

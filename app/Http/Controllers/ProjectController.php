@@ -75,6 +75,8 @@ class ProjectController extends Controller
     public function destroy(Request $request, Project $project): RedirectResponse
     {
         $this->authorize('delete', $project);
+
+
         $project->delete();
 
         return redirect()->route('projects.index');

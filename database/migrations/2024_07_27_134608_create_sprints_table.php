@@ -15,7 +15,7 @@ return new class extends Migration
 
         Schema::create('sprints', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('project_id')->constrained();
+            $table->foreignId('project_id')->constrained()->cascadeOnDelete();
             $table->string('title');
             $table->text('description');
             $table->string('status')->default('active');
