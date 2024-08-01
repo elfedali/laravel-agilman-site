@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Models\Sprint;
 use Illuminate\Foundation\Http\FormRequest;
 
 class SprintUpdateRequest extends FormRequest
@@ -11,7 +12,7 @@ class SprintUpdateRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return true;
+        return $this->user()->can('update', Sprint::class);
     }
 
     /**

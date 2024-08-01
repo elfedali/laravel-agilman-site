@@ -13,7 +13,8 @@ class SprintController extends Controller
 {
     public function index(Request $request): View
     {
-        // with tasks
+
+
         $sprints = Sprint::with('tasks')->get();
 
 
@@ -37,7 +38,8 @@ class SprintController extends Controller
 
     public function show(Request $request, Sprint $sprint): View
     {
-        // load comments and user
+
+        $this->authorize('view', $sprint);
         $sprint->load('comments.user');
         return view('sprint.show', compact('sprint'));
     }

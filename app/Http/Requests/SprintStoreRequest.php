@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Models\Sprint;
 use Illuminate\Foundation\Http\FormRequest;
 
 class SprintStoreRequest extends FormRequest
@@ -11,7 +12,7 @@ class SprintStoreRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return true;
+        return $this->user()->can('create', Sprint::class);
     }
 
     /**

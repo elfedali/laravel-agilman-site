@@ -13,8 +13,7 @@ class ProjectController extends Controller
 {
     public function index(Request $request): View
     {
-        // $projects = Project::all()->sortByDesc('created_at')
-        // get the project created by the authenticated user
+
         $projects = auth()->user()->projects->sortByDesc('created_at');
 
         return view('project.index', compact('projects'));
@@ -49,7 +48,7 @@ class ProjectController extends Controller
 
     public function show(Request $request, Project $project): View
     {
-        // project with sprints
+        $this->authorize('view', $project);
         $project->load(['sprints' => function ($query) {
             $query->orderBy('created_at', 'desc');
         }]);
@@ -59,20 +58,23 @@ class ProjectController extends Controller
 
     public function edit(Request $request, Project $project): View
     {
+        $this->authorize('update', $project);
         return view('project.edit', compact('project'));
     }
 
     public function update(ProjectUpdateRequest $request, Project $project): RedirectResponse
     {
+        $this->authorize('update', $project);
         $project->update($request->validated());
 
-        $request->session()->flash('project.id', $project->id);
 
-        return redirect()->route('projects.index');
+
+        return redirect()->route('projects.index')->with('success',  $project->title . 'a été mis à jour');
     }
 
     public function destroy(Request $request, Project $project): RedirectResponse
     {
+        $this->authorize('delete', $project);
         $project->delete();
 
         return redirect()->route('projects.index');
