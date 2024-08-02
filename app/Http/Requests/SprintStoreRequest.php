@@ -29,6 +29,7 @@ class SprintStoreRequest extends FormRequest
             'duration' => ['required', 'integer'],
             'priority' => ['required', 'string', 'max:10', 'in:low,medium,high'],
             'type' => ['required', 'string', 'max:10', 'in:feature,bug,task'],
+            'parent_id' => ['nullable', 'integer', 'exists:sprints,id'],
 
         ];
     }

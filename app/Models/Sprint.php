@@ -42,6 +42,7 @@ class Sprint extends Model
         'duration',
         'priority',
         'type',
+        'parent_id',
     ];
 
     /**
@@ -86,5 +87,11 @@ class Sprint extends Model
     public function comments(): MorphMany
     {
         return $this->morphMany(Comment::class, 'commentable');
+    }
+
+    // parent
+    public function parent(): BelongsTo
+    {
+        return $this->belongsTo(Sprint::class, 'parent_id');
     }
 }

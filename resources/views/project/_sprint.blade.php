@@ -1,4 +1,4 @@
-  <div class="col-lg-12">
+  <div class="col-lg-12" id="sprint-{{ $sprint->id }}">
       <div class="card mb-3"
           style="border: 2px solid @if ($sprint->status == 'todo') #0d6efd @elseif ($sprint->status == 'doing') #ffc107 @else var(--bs-secondary) @endif">
 

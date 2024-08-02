@@ -32,6 +32,9 @@ return new class extends Migration
 
             $table->string('assignee')->nullable(); // assigned to user
 
+            // parent_id
+            $table->foreignId('parent_id')->nullable()->constrained('sprints')->cascadeOnDelete();
+
             $table->timestamps();
         });
 

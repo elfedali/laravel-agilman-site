@@ -143,12 +143,21 @@
                                                     </label>
                                                 </div>
 
-                                                {{-- <div class="form-floating mb-3">
-                                                    {{ html()->select('parent_id', $project->sprints->pluck('title', 'id'))->class('form-control') }}
+                                                <?php
+                                                $empty = ['' => '-- Aucune sprint parent'];
+                                                $options = $project->sprints->pluck('title', 'id');
+                                                $options = $empty + $options->toArray();
+                                                ?>
+                                                <div class="form-floating mb-3">
+                                                    {{ html()->select(
+                                                            'parent_id',
+                                                    
+                                                            $options,
+                                                        )->class('form-control') }}
                                                     <label for="parent_id">
                                                         {{ __('label.parent') }}
                                                     </label>
-                                                </div> --}}
+                                                </div>
 
 
                                             </div>
