@@ -15,6 +15,15 @@ class ProjectController extends Controller
     {
 
         $projects = auth()->user()->projects->sortByDesc('created_at');
+        $project_member = auth()->user()->projects_member;
+        // add champ is_member =true
+        foreach ($project_member as $project) {
+            $project->is_member = true;
+        }
+
+
+
+        $projects = $projects->merge($project_member)->sortByDesc('created_at');
 
         return view('project.index', compact('projects'));
     }

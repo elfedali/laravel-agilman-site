@@ -58,6 +58,12 @@ class User extends Authenticatable
     {
         return $this->hasMany(Project::class, 'owner_id');
     }
+    // has many projects
+    public function projects_member()
+    {
+        return $this->belongsToMany(Project::class, 'project_user');
+    }
+
 
     // has many sprints
     public function sprints()

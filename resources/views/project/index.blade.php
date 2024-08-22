@@ -70,7 +70,7 @@
                                 </div>
                             </div>
                             <div class="modal-footer">
-                                {{ html()->submit('Create project')->class('btn btn-outline-primary') }}
+                                {{ html()->submit('Créer le projet')->class('btn btn-primary') }}
                             </div>
                             {{ html()->form()->close() }}
                         </div>
@@ -110,13 +110,33 @@
 
                                 </h5>
                                 {{-- humain date created --}}
-                                <p class="card-text text-muted">
+                                <p class="card-text  mb-1">
                                     <small>
                                         <small>
                                             Créé le {{ $project->created_at->diffForHumans() }}
                                         </small>
                                     </small>
                                 </p>
+
+                                {{-- owner --}}
+                                @if ($project->owner->is(auth()->user()))
+                                    <p class="card-text text-muted">
+                                        <small>
+                                            <small>
+                                                Vous êtes le propriétaire de ce projet
+                                            </small>
+                                        </small>
+                                    </p>
+                                @else
+                                    <p class="card-text text-muted">
+                                        <small>
+                                            <small>
+                                                Propriétaire: {{ $project->owner->name }}
+                                            </small>
+                                        </small>
+                                    </p>
+                                @endif
+
 
 
                             </div>

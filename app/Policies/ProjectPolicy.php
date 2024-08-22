@@ -23,9 +23,11 @@ class ProjectPolicy
     {
         if ($user->id === $project->owner_id) {
             return true;
-        } else {
-            return false;
         }
+        if ($project->members->contains($user)) {
+            return true;
+        }
+        return false;
     }
 
     /**

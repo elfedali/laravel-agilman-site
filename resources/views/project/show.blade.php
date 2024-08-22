@@ -10,16 +10,14 @@
                 <h2>
                     {{ __('label.project-details') }}
                 </h2>
-                <div class="card">
+                <div class="card" id="project-{{ $project->id }}">
                     <div class="card-body">
                         <h1 class="h4">
                             {{ $project->title }}
                         </h1>
                         <div class="card-text text-muted ">
                             <small>
-
                                 Créé le {{ $project->created_at->diffForHumans() }}
-
                             </small>
                         </div>
 
@@ -30,9 +28,24 @@
 
                             </small>
                         </div>
+                        <hr>
+                        <div>
+                            <h6>
+                                Les membres du projet
+                            </h6>
+                            <ul class="list-group list-group-flush">
+                                @foreach ($project->members as $member)
+                                    <li class="list-group list-group-item">
+                                        {{ $member->name }}
+                                    </li>
+                                @endforeach
+                            </ul>
+
+                        </div>
                         <section class="mt-4">
                             <!-- Button trigger modal -->
-                            <div class="d-flex justify-content-between align-items-center">
+                            <div class="d-flex  align-items-center">
+
                                 <button type="button" class="btn btn-success me-3" data-bs-toggle="modal"
                                     data-bs-target="#spintModal">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="1.4em" height="1.4em"
@@ -45,13 +58,62 @@
                                     </span>
                                 </button>
 
+                                @if ($project->owner_id === auth()->id())
+                                    <button type="button" class="btn btn-primary me-3" data-bs-toggle="modal"
+                                        data-bs-target="#memberModal">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"
+                                            viewBox="0 0 24 24">
+                                            <g fill="none" fill-rule="evenodd">
+                                                <path
+                                                    d="M24 0v24H0V0zM12.593 23.258l-.011.002l-.071.035l-.02.004l-.014-.004l-.071-.035q-.016-.005-.024.005l-.004.01l-.017.428l.005.02l.01.013l.104.074l.015.004l.012-.004l.104-.074l.012-.016l.004-.017l-.017-.427q-.004-.016-.017-.018m.265-.113l-.013.002l-.185.093l-.01.01l-.003.011l.018.43l.005.012l.008.007l.201.093q.019.005.029-.008l.004-.014l-.034-.614q-.005-.019-.02-.022m-.715.002a.02.02 0 0 0-.027.006l-.006.014l-.034.614q.001.018.017.024l.015-.002l.201-.093l.01-.008l.004-.011l.017-.43l-.003-.012l-.01-.01z" />
+                                                <path fill="currentColor"
+                                                    d="M16 14a5 5 0 0 1 5 5v2a1 1 0 1 1-2 0v-2a3 3 0 0 0-3-3H8a3 3 0 0 0-3 3v2a1 1 0 1 1-2 0v-2a5 5 0 0 1 5-5zm4-6a1 1 0 0 1 1 1v1h1a1 1 0 1 1 0 2h-1v1a1 1 0 1 1-2 0v-1h-1a1 1 0 1 1 0-2h1V9a1 1 0 0 1 1-1m-8-6a5 5 0 1 1 0 10a5 5 0 0 1 0-10m0 2a3 3 0 1 0 0 6a3 3 0 0 0 0-6" />
+                                            </g>
+                                        </svg>
+                                        <span class="">
+                                            Ajouter un membre
+                                        </span>
+                                    </button>
+
+                                    <div class="modal fade" id="memberModal" tabindex="-1"
+                                        aria-labelledby="memberModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog modal-lg">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h1 class="modal-title fs-5" id="memberModalLabel">
+                                                        Ajouter un membre au projet <u>{{ $project->title }}</u>
+                                                    </h1>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                        aria-label="Close"></button>
+                                                </div>
+                                                {{ html()->form('POST', route('projects.members.store', $project))->open() }}
+                                                <div class="modal-body">
+                                                    <div class="form-floating mb-3">
+                                                        {{ html()->email('email')->class('form-control')->placeholder(__('label.email')) }}
+                                                        <label for="email">Email</label>
+                                                    </div>
+                                                    {{-- <div class="form-floating mb-3">
+                                                    {{ html()->select('role', ['admin' => 'Admin', 'member' => 'Membre'])->class('form-control') }}
+                                                    <label for="role">Role</label>
+                                                </div> --}}
+                                                </div>
+                                                <div class="modal-footer">
+                                                    {{ html()->submit('Ajouter un membre')->class('btn btn-primary') }}
+
+                                                </div>
+                                                {{ html()->form()->close() }}
+                                            </div>
+                                        </div>
+                                    </div>
 
 
-                                @can('update', $project)
-                                    {{ html()->form('DELETE', route('projects.destroy', $project))->open() }}
-                                    {{ html()->submit('Supprimer le projet')->class('btn btn-link text-danger')->attribute('onclick', 'return confirm("Voulez-vous vraiment supprimer ce projet ?")') }}
-                                    {{ html()->form()->close() }}
-                                @endcan
+
+                                    @can('update', $project)
+                                        {{ html()->form('DELETE', route('projects.destroy', $project))->open() }}
+                                        {{ html()->submit('Supprimer le projet')->class('btn btn-link text-danger')->attribute('onclick', 'return confirm("Voulez-vous vraiment supprimer ce projet ?")') }}
+                                        {{ html()->form()->close() }}
+                                    @endcan
+                                @endif
                             </div>
                             <!-- /.d-flex -->
                             <!-- Modal -->
@@ -97,7 +159,7 @@
 
                                                         {{-- durration --}}
                                                         <div class="form-floating mb-3">
-                                                            {{ html()->number('duration')->class('form-control')->placeholder(__('label.duration')) }}
+                                                            {{ html()->number('duration')->class('form-control')->placeholder(__('label.duration'))->attribute('min', 1) }}
                                                             <label for="duration">
                                                                 {{ __('label.duration') }}
                                                             </label>

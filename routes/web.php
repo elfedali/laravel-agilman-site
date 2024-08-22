@@ -26,6 +26,10 @@ Route::middleware(['auth'])->group(function () {
 
     Route::resource('projects', App\Http\Controllers\ProjectController::class)
         ->except(['create', 'edit']);
+    // add member to project
+    Route::post('projects/{project}/members', [App\Http\Controllers\ProjectMemberController::class, 'store'])->name('projects.members.store');
+    // project accept
+    Route::get('projects/{project}/members/accept', [App\Http\Controllers\ProjectMemberController::class, 'accept'])->name('projects.members.accept');
 
 
     Route::resource('sprints', App\Http\Controllers\SprintController::class)
