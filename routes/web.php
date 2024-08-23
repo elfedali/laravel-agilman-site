@@ -47,3 +47,9 @@ Route::middleware(['auth'])->group(function () {
     Route::get('settings', [App\Http\Controllers\SettingsController::class, 'index'])->name('settings');
     Route::post('settings', [App\Http\Controllers\SettingsController::class, 'update'])->name('settings.update');
 });
+
+// admin
+Route::middleware(['auth'])->prefix('admin')->group(function () {
+    Route::get('dashboard', [App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('admin.dashboard');
+    //Route::resource('users', App\Http\Controllers\Admin\UserController::class);
+});
