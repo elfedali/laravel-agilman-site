@@ -32,6 +32,8 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                         aria-expanded="false">
+                        <img src="{{ auth()->user()->getFirstMediaUrl('avatars') }}" alt="{{ auth()->user()->name }}"
+                            class="nav-thumbnail" style="width: 30px; height: 30px; object-fit: cover;">
                         {{ Auth::user()->name }}
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end">

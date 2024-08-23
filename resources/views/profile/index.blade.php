@@ -9,6 +9,11 @@
                     <h1>
                         {{ __('label.profile') }}
                     </h1>
+                    {{-- show avatar from media library  --}}
+                    <div class="mb-3">
+                        <img src="{{ auth()->user()->getFirstMediaUrl('avatars') }}" alt="{{ auth()->user()->name }}"
+                            class="thumbnail">
+                    </div>
 
                     {{ html()->form('POST', route('profile.update'))->open() }}
                     <div class="form-floating mb-3">
