@@ -51,5 +51,7 @@ Route::middleware(['auth'])->group(function () {
 // admin
 Route::middleware(['auth'])->prefix('admin')->group(function () {
     Route::get('dashboard', [App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('admin.dashboard');
-    //Route::resource('users', App\Http\Controllers\Admin\UserController::class);
+    Route::resource('users', App\Http\Controllers\Admin\AdminUserController::class)->except(['index', 'show', 'create', 'store', 'edit', 'update'])->names('admin.users');
+    // setAvatars
+    Route::get('set-avatars', [App\Http\Controllers\Admin\DashboardController::class, 'setAvatars'])->name('admin.set-avatars');
 });
